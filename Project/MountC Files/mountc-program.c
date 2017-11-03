@@ -16,6 +16,5 @@ myfun(x, y){ //  Only parameters are available--no local variables.
 }
 
 main() {         // You may assume there are no parameters to main.
-    printf("Size of int is: %d\n", sizeof(int));
     return myfun(0, 0);
 }
