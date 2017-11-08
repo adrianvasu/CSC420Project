@@ -32,13 +32,13 @@ expr_tail: op expr
     | /* Epsilon */
     ;
 
-term: NUM
-    | ID term_tail
+term: NUM                   # numTerm
+    | ID term_tail          # idTerm
     ;
 
-term_tail: LPAREN arg_list RPAREN
-    | GETS expr
-    | /* Epsilon */
+term_tail: LPAREN arg_list RPAREN   #funCall
+    | GETS expr                     #varAssign
+    | /* Epsilon */                 #epsilon
     ;
 
 arg_list: expr arg_list_tail

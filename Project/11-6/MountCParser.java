@@ -637,22 +637,41 @@ public class MountCParser extends Parser {
 	}
 
 	public static class TermContext extends ParserRuleContext {
-		public TerminalNode NUM() { return getToken(MountCParser.NUM, 0); }
-		public TerminalNode ID() { return getToken(MountCParser.ID, 0); }
-		public Term_tailContext term_tail() {
-			return getRuleContext(Term_tailContext.class,0);
-		}
 		public TermContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_term; }
+	 
+		public TermContext() { }
+		public void copyFrom(TermContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class IdTermContext extends TermContext {
+		public TerminalNode ID() { return getToken(MountCParser.ID, 0); }
+		public Term_tailContext term_tail() {
+			return getRuleContext(Term_tailContext.class,0);
+		}
+		public IdTermContext(TermContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterTerm(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterIdTerm(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitTerm(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitIdTerm(this);
+		}
+	}
+	public static class NumTermContext extends TermContext {
+		public TerminalNode NUM() { return getToken(MountCParser.NUM, 0); }
+		public NumTermContext(TermContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterNumTerm(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitNumTerm(this);
 		}
 	}
 
@@ -664,6 +683,7 @@ public class MountCParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case NUM:
+				_localctx = new NumTermContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(94);
@@ -671,6 +691,7 @@ public class MountCParser extends Parser {
 				}
 				break;
 			case ID:
+				_localctx = new IdTermContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(95);
@@ -695,26 +716,56 @@ public class MountCParser extends Parser {
 	}
 
 	public static class Term_tailContext extends ParserRuleContext {
+		public Term_tailContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_term_tail; }
+	 
+		public Term_tailContext() { }
+		public void copyFrom(Term_tailContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class EpsilonContext extends Term_tailContext {
+		public EpsilonContext(Term_tailContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterEpsilon(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitEpsilon(this);
+		}
+	}
+	public static class FunCallContext extends Term_tailContext {
 		public TerminalNode LPAREN() { return getToken(MountCParser.LPAREN, 0); }
 		public Arg_listContext arg_list() {
 			return getRuleContext(Arg_listContext.class,0);
 		}
 		public TerminalNode RPAREN() { return getToken(MountCParser.RPAREN, 0); }
+		public FunCallContext(Term_tailContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterFunCall(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitFunCall(this);
+		}
+	}
+	public static class VarAssignContext extends Term_tailContext {
 		public TerminalNode GETS() { return getToken(MountCParser.GETS, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public Term_tailContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_term_tail; }
+		public VarAssignContext(Term_tailContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterTerm_tail(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterVarAssign(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitTerm_tail(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitVarAssign(this);
 		}
 	}
 
@@ -726,6 +777,7 @@ public class MountCParser extends Parser {
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
+				_localctx = new FunCallContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(99);
@@ -737,6 +789,7 @@ public class MountCParser extends Parser {
 				}
 				break;
 			case 2:
+				_localctx = new VarAssignContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(103);
@@ -746,6 +799,7 @@ public class MountCParser extends Parser {
 				}
 				break;
 			case 3:
+				_localctx = new EpsilonContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				}
