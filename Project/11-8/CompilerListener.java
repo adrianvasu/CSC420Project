@@ -2,7 +2,8 @@ import java.util.HashMap;
 
 public class CompilerListener extends MountCBaseListener {
 
-    private HashMap symbolTable = new HashMap(Map<Integer, SymbolTableEntry> m);
+    private Map<Integer, SymbolTableEntry> symbolTable = new HashMap<Integer, SymbolTableEntry>();
+    private int keyCount = 0;
 
     @Override
     public void enterProgram(MountCParser.ProgramContext ctx) {
@@ -23,14 +24,29 @@ public class CompilerListener extends MountCBaseListener {
     }
 
     @Override public void exitFun_def(MountCParser.Fun_defContext ctx) {
-
+        System.out.println("\tSTWA\t2,s");
+        System.out.println("\tRET");
     }
+
+    @Override
+    public void enterNumTerm(MountCParser.NumTermContext ctx) {
+        System.out.println("\tLDWA\t" + ctx.NUM() + ",s");
+    }
+
+    @Override
+    public void exitIdTerm(MountCParser.IdTermContext ctx) {
+        System.out.println("\tCALL\t" + ctx.ID().toString());
+    }
+
     @Override
     public void exitFunCall(MountCParser.FunCallContext ctx) {
-        //System.out.println("\tCALL\t" + symbolTable.get());
+        System.out.println("\tCALL\t" + symbolTable.get(keyCount).getId());
     }
+
     @Override
     public void enterIdTerm(MountCParser.IdTermContext ctx) {
-        //symbolTable.put(ctx.ID().toString());
+        SymbolTableEntry entry = new SymbolTableEntry();
+        entry.setId(ctx.ID().toString())
+        symbolTable.put(keyCount, entry);
     }
 }
