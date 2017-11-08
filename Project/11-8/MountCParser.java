@@ -303,22 +303,41 @@ public class MountCParser extends Parser {
 	}
 
 	public static class Id_list_tailContext extends ParserRuleContext {
+		public Id_list_tailContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_id_list_tail; }
+	 
+		public Id_list_tailContext() { }
+		public void copyFrom(Id_list_tailContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	public static class ParameterContext extends Id_list_tailContext {
 		public TerminalNode COMMA() { return getToken(MountCParser.COMMA, 0); }
 		public TerminalNode ID() { return getToken(MountCParser.ID, 0); }
 		public Id_list_tailContext id_list_tail() {
 			return getRuleContext(Id_list_tailContext.class,0);
 		}
-		public Id_list_tailContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_id_list_tail; }
+		public ParameterContext(Id_list_tailContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterId_list_tail(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterParameter(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitId_list_tail(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitParameter(this);
+		}
+	}
+	public static class Epsilon1Context extends Id_list_tailContext {
+		public Epsilon1Context(Id_list_tailContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterEpsilon1(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitEpsilon1(this);
 		}
 	}
 
@@ -330,6 +349,7 @@ public class MountCParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case COMMA:
+				_localctx = new ParameterContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(51);
@@ -341,6 +361,7 @@ public class MountCParser extends Parser {
 				}
 				break;
 			case RPAREN:
+				_localctx = new Epsilon1Context(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				}
@@ -726,15 +747,15 @@ public class MountCParser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class EpsilonContext extends Term_tailContext {
-		public EpsilonContext(Term_tailContext ctx) { copyFrom(ctx); }
+	public static class Epsilon2Context extends Term_tailContext {
+		public Epsilon2Context(Term_tailContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterEpsilon(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).enterEpsilon2(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitEpsilon(this);
+			if ( listener instanceof MountCListener ) ((MountCListener)listener).exitEpsilon2(this);
 		}
 	}
 	public static class FunCallContext extends Term_tailContext {
@@ -799,7 +820,7 @@ public class MountCParser extends Parser {
 				}
 				break;
 			case 3:
-				_localctx = new EpsilonContext(_localctx);
+				_localctx = new Epsilon2Context(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				}

@@ -47,15 +47,29 @@ public interface MountCListener extends ParseTreeListener {
 	 */
 	void exitId_list(MountCParser.Id_listContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link MountCParser#id_list_tail}.
+	 * Enter a parse tree produced by the {@code parameter}
+	 * labeled alternative in {@link MountCParser#id_list_tail}.
 	 * @param ctx the parse tree
 	 */
-	void enterId_list_tail(MountCParser.Id_list_tailContext ctx);
+	void enterParameter(MountCParser.ParameterContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link MountCParser#id_list_tail}.
+	 * Exit a parse tree produced by the {@code parameter}
+	 * labeled alternative in {@link MountCParser#id_list_tail}.
 	 * @param ctx the parse tree
 	 */
-	void exitId_list_tail(MountCParser.Id_list_tailContext ctx);
+	void exitParameter(MountCParser.ParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code epsilon1}
+	 * labeled alternative in {@link MountCParser#id_list_tail}.
+	 * @param ctx the parse tree
+	 */
+	void enterEpsilon1(MountCParser.Epsilon1Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code epsilon1}
+	 * labeled alternative in {@link MountCParser#id_list_tail}.
+	 * @param ctx the parse tree
+	 */
+	void exitEpsilon1(MountCParser.Epsilon1Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link MountCParser#expr_list}.
 	 * @param ctx the parse tree
@@ -145,17 +159,17 @@ public interface MountCListener extends ParseTreeListener {
 	 */
 	void exitVarAssign(MountCParser.VarAssignContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code epsilon}
+	 * Enter a parse tree produced by the {@code epsilon2}
 	 * labeled alternative in {@link MountCParser#term_tail}.
 	 * @param ctx the parse tree
 	 */
-	void enterEpsilon(MountCParser.EpsilonContext ctx);
+	void enterEpsilon2(MountCParser.Epsilon2Context ctx);
 	/**
-	 * Exit a parse tree produced by the {@code epsilon}
+	 * Exit a parse tree produced by the {@code epsilon2}
 	 * labeled alternative in {@link MountCParser#term_tail}.
 	 * @param ctx the parse tree
 	 */
-	void exitEpsilon(MountCParser.EpsilonContext ctx);
+	void exitEpsilon2(MountCParser.Epsilon2Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link MountCParser#arg_list}.
 	 * @param ctx the parse tree

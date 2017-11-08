@@ -12,8 +12,8 @@ id_list: ID id_list_tail
     | /* Epsilon */
     ;
 
-id_list_tail: COMMA ID id_list_tail
-    | /* Epsilon */
+id_list_tail: COMMA ID id_list_tail #parameter
+    | /* Epsilon */                 #epsilon1
     ;
 
 expr_list: expr expr_list_tail
@@ -38,7 +38,7 @@ term: NUM                   # numTerm
 
 term_tail: LPAREN arg_list RPAREN   #funCall
     | GETS expr                     #varAssign
-    | /* Epsilon */                 #epsilon
+    | /* Epsilon */                 #epsilon2
     ;
 
 arg_list: expr arg_list_tail
