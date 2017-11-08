@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class CompilerListener extends MountCBaseListener {
 
-    private HashMap symbolTable = new HashMap();
+    private HashMap symbolTable = new HashMap(Map<Integer, SymbolTableEntry> m);
 
     @Override
     public void enterProgram(MountCParser.ProgramContext ctx) {
@@ -27,10 +27,10 @@ public class CompilerListener extends MountCBaseListener {
     }
     @Override
     public void exitFunCall(MountCParser.FunCallContext ctx) {
-        System.out.println("\tCALL\t" + symbolTable.get());
+        //System.out.println("\tCALL\t" + symbolTable.get());
     }
     @Override
     public void enterIdTerm(MountCParser.IdTermContext ctx) {
-        symbolTable.put(ctx.ID().toString());
+        //symbolTable.put(ctx.ID().toString());
     }
 }
