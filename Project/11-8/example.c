@@ -5,9 +5,6 @@ myfun(x, y){ //  Only parameters are available--no local variables.
    //  including an if-expression
    return
      y = getint(),
-     (y - 2) // if (y - 2 != 0)
-       ? (x = 10 - 20 + y, y = 3)
-       : (y = 25),
      putint(x),  // Print the value in x
      putchar(32),
      putint(y),

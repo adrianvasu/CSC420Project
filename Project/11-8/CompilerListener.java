@@ -40,9 +40,12 @@ public class CompilerListener extends MountCBaseListener {
     public void enterId_list(MountCParser.Id_listContext ctx) {
         numParams += 1;
         if (ctx.ID() == null) {
-            System.out.println("ERROR YOUR PARAMETER IS NOT DEFINED");
-            System.exit(0);
-        } else {
+	    if(ctx.getParent().getChild(0).getText().equals(funKey)){
+	    } else {
+		System.out.println("ERROR YOUR PARAMETER IS NOT DEFINED");
+            	System.exit(0);
+	    }
+        } else if(!(ctx.getParent().getChild(0).getText().equals(funKey))) {
             System.out.println(ctx.ID().toString() + ":\t.EQUATE\t0");
         }
     }
@@ -70,28 +73,12 @@ public class CompilerListener extends MountCBaseListener {
 
     @Override
     public void exitFunCall(MountCParser.FunCallContext ctx) {
-        //if (!currentKey.equals(null)) {
-            //System.out.println("\tCALL\t" + symbolTable.get(currentKey).getId());
-        //    currentKey = null;
-        //}
-        //else if (!funKey.equals(null)) {
-        //    System.out.println("\tCALL\t" + funKey);
-        //    funKey = null;
-        //}
+        
+            System.out.println("\tCALL\t" + ctx.getParent().getChild(0).getText()/*getParent().getChild(0).ID()*/);
     }
 
     @Override
     public void enterIdTerm(MountCParser.IdTermContext ctx) {
-        if (ctx.ID().toString().equals("putint") | ctx.ID().toString().equals("getint") | ctx.ID().toString().equals("putchar") | ctx.ID().toString().equals("getchar")) {
-            //SymbolTableEntry entry = new SymbolTableEntry();
-            //entry.setId(ctx.ID().toString());
-            //currentKey = ctx.ID().toString();
-            //symbolTable.put(currentKey, entry);
-            System.out.println("\tCALL\t" + ctx.ID().toString());
-        }
-        else if (!funKey.equals(null)) {
-            System.out.println("\tCALL\t" + funKey);
-            funKey = null;
-        }
-    }
+	
+	}
 }

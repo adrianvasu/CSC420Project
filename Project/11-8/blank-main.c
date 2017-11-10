@@ -1,5 +1,5 @@
-myFun(x) {
-    return x;
+myFun(y) {
+    return y;
 }
 
 main(x) {         // You may assume there are no parameters to main.
