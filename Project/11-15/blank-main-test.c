@@ -1,6 +1,5 @@
 main() {         // You may assume there are no parameters to main.
     return
-    getint(),
-    3 + 2,
+    putint(3+4),
     0;
 }

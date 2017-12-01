@@ -50,7 +50,7 @@ public class CompilerListener extends MountCBaseListener {
     @Override
     public void enterParameter(MountCParser.ParameterContext ctx) {
         System.out.println(ctx.ID().toString() + ":\t.EQUATE\t0");
-        //symbolTable.put();
+        symbolTable.put();
     }
 
     @Override

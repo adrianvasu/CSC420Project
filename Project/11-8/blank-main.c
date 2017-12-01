@@ -1,10 +1,6 @@
-myFun(y) {
-    return y;
-}
-
-main(x) {         // You may assume there are no parameters to main.
+main() {         // You may assume there are no parameters to main.
     return
-    x = getint(),
-    myFun(x),
+    getint(),
+    3 + 2,
     0;
 }
