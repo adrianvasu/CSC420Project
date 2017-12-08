@@ -1,5 +1,13 @@
+myFun(x, y) {
+    return
+    0;
+}
+
 main() {         // You may assume there are no parameters to main.
     return
-        x = 3,
+        3,
+        putint(getint() + (3 - 2)),
+        putchar(10),
+        myFun(1,2),
         0;
 }
